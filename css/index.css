@@ -306,7 +306,7 @@ li {
   width: 2rem;
   height: 2rem;
   border-radius: 9999px;
-  left: 2%;
+  left: -2%;
   top: 50%;
   transform: translateY(-50%) translateX(-50%);
   display: flex;
@@ -334,7 +334,7 @@ li {
   width: 2rem;
   height: 2rem;
   border-radius: 9999px;
-  right: -7%;
+  right: -12%;
   top: 50%;
   transform: translateY(-50%) translateX(-50%);
   display: flex;
