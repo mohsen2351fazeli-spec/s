@@ -7,7 +7,7 @@
   src: url("./Shabnam.woff2");
 }
 body {
-  background-color: #ecf1fe;
+  background-color: #d9e3fc;
 }
 ul,
 li {
@@ -126,10 +126,12 @@ li {
 .about-titr {
   color: #1d3a66;
   z-index: 2;
+  position: relative;
 }
 .about-text {
   margin-top: 0.5rem;
   z-index: 2;
+  position: relative;
 }
 .back-1 {
   width: 10rem;
@@ -139,7 +141,7 @@ li {
   position: absolute;
   top: -1rem;
   right: -1rem;
-  z-index: -1;
+  z-index: -5;
 }
 .back-2 {
   width: 10rem;
@@ -149,7 +151,7 @@ li {
   position: absolute;
   bottom: -1rem;
   left: -1rem;
-  z-index: -1;
+  z-index: -5;
 }
 .about-vir {
   width: 2rem;
@@ -157,6 +159,12 @@ li {
   position: absolute;
   object-fit: cover;
   left: 1rem;
+}
+.backg {
+  position: absolute;
+  inset: 0;
+  background-color: white;
+  border-radius: 0.5rem;
 }
 /* news */
 .news {
@@ -427,4 +435,46 @@ li {
   bottom: 0.2rem;
   position: absolute;
   font-size: 0.8rem;
+}
+
+@media all and (min-width: 720px) {
+  .header {
+    height: 40rem;
+  }
+  .sahife {
+    width: 25rem;
+    height: 25rem;
+  }
+  .stext {
+    width: 27rem;
+    height: 18rem;
+  }
+  .navar-pic {
+    width: 40%;
+  }
+  .title {
+    margin-top: 1rem;
+  }
+  .news {
+    margin: 3rem 20rem 0 20rem;
+  }
+  .right-btn {
+    right: 50%;
+    transform: translateX(calc(50% + 12rem));
+  }
+  .left-btn {
+    left: 50%;
+    transform: translateX(calc(-50% - 12rem));
+  }
+  .about-box {
+    max-width: 50rem;
+    margin: 0;
+    margin: auto;
+  }
+  .news {
+    margin-bottom: 2rem;
+  }
+}
+.container::-webkit-scrollbar {
+  display: none;
 }
