@@ -1,7 +1,7 @@
 const btns = document.querySelectorAll(".new-nav-btn");
 const articels = document.querySelectorAll(".new");
 const btnsHale = document.querySelector(".new-nav-hale");
-let i = 0;
+let j = 0;
 let sa;
 
 const observer = new IntersectionObserver(
@@ -9,14 +9,14 @@ const observer = new IntersectionObserver(
     ens.forEach((en) => {
       if (en.isIntersecting) {
         const elem = en.target;
-        ``;
         articels.forEach((a, i) => {
           if (a === elem) {
             btnsHale.className = `new-nav-hale a${i + 1}`;
+            j = i;
             // clearInterval(sa);
             // sa = setInterval(() => {
-            //   i = (i + 1) % articels.length;
-            //   articels[i].scrollIntoView({
+            //   j = (j + 1) % articels.length;
+            //   articels[j].scrollIntoView({
             //     behavior: "smooth",
             //     block: "nearest",
             //     inline: "start",
@@ -38,8 +38,8 @@ articels.forEach((a) => {
   observer.observe(a);
 });
 // sa = setInterval(() => {
-//   i = (i + 1) % articels.length;
-//   articels[i].scrollIntoView({
+//   j = (j + 1) % articels.length;
+//   articels[j].scrollIntoView({
 //     behavior: "smooth",
 //     block: "nearest",
 //     inline: "start",
@@ -50,8 +50,8 @@ const rightbtn = document.querySelector(".right-btn");
 const leftbtn = document.querySelector(".left-btn");
 
 leftbtn.addEventListener("click", () => {
-  i = (i + 1) % articels.length;
-  articels[i].scrollIntoView({
+  j = (j + 1) % articels.length;
+  articels[j].scrollIntoView({
     behavior: "smooth",
     block: "nearest",
     inline: "start",
@@ -59,9 +59,9 @@ leftbtn.addEventListener("click", () => {
 });
 
 rightbtn.addEventListener("click", () => {
-  i = (i - 1) % articels.length;
-  i < 0 ? (i = articels.length - 1) : true;
-  articels[i].scrollIntoView({
+  j = (j - 1) % articels.length;
+  j < 0 ? (j = articels.length - 1) : true;
+  articels[j].scrollIntoView({
     behavior: "smooth",
     block: "nearest",
     inline: "start",
