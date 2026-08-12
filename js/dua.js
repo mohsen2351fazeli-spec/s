@@ -6396,13 +6396,23 @@ const data = [
     commentary: "",
   },
 ];
-
+const btn = document.querySelector(".btn");
+const mten = document.querySelector(".mten");
+const bten = document.querySelector(".bten");
+const one = document.querySelector(".one");
+const two = document.querySelector(".two");
+const input = document.querySelector(".input");
+const audio = document.querySelector("audio");
 const panelbtn = document.querySelector(".panel-btn");
 const titl = document.querySelector(".titl");
 const des = document.querySelector(".des");
 const sec = document.querySelector(".sec");
 const i = new URLSearchParams(window.location.search).get("id");
+const setbtn = document.querySelector(".settings");
+const set = document.querySelector(".setting");
+const setpic = document.querySelector(".settings-pic");
 const obj = data.find((d) => d.id == i);
+let isplay = false;
 
 const main = () => {
   titl.innerHTML = obj.title;
@@ -6418,8 +6428,43 @@ const main = () => {
       `,
     );
   });
+  if (obj.audio) audio.setAttribute("src", obj.audio);
+  if (obj.commentary)
+    document.querySelector(".taf-text").innerHTML = obj.commentary;
+};
+const h = (num) => {
+  if (num % 60 < 10) return `${Math.floor(num / 60)}:0${num % 60}`;
+  else return `${Math.floor(num / 60)}:${num % 60}`;
+};
+const musicHandler = () => {
+  two.innerHTML = h(Math.floor(audio.duration));
+};
+const time = () => {
+  one.innerHTML = h(Math.floor(audio.currentTime));
+  input.value = (audio.currentTime * 10000) / audio.duration;
 };
 
+mten.addEventListener("click", () => {
+  audio.currentTime -= 10;
+});
+bten.addEventListener("click", () => {
+  audio.currentTime += 10;
+});
+btn.addEventListener("click", () => {
+  if (isplay) {
+    btn.setAttribute("src", "../pics/play.png");
+    audio.pause();
+    isplay = false;
+  } else {
+    btn.setAttribute("src", "../pics/pouse.png");
+    audio.play();
+    isplay = true;
+  }
+});
+input.addEventListener("input", () => {
+  audio.currentTime = (input.value * audio.duration) / 1000;
+  time();
+});
 panelbtn.addEventListener("click", () => {
   document.querySelector(".panel").classList.toggle("h0");
   const pbc = document.querySelectorAll(".panel-btn-child");
@@ -6429,3 +6474,41 @@ panelbtn.addEventListener("click", () => {
   pbc[2].classList.toggle("fb");
 });
 main();
+audio.addEventListener("loadeddata", () => {
+  musicHandler();
+  time();
+  setInterval(() => {
+    time();
+  }, 800);
+});
+setbtn.addEventListener("click", () => {
+  setbtn.classList.toggle("r180");
+  set.classList.toggle("lm");
+  setpic.classList.toggle("r");
+});
+const arabic = document.querySelectorAll(".arabic");
+const farsi = document.querySelectorAll(".farsi");
+const taftext = document.querySelector(".taf-text");
+document.querySelector(".setting-2").addEventListener("input", (e) => {
+  const value = e.target.value / 10;
+  arabic.forEach((a) => {
+    a.style.cssText = `font-size:${value}rem;`;
+  });
+  farsi.forEach((a) => {
+    a.style.cssText = `font-size:${value - 0.2}rem;`;
+  });
+  taftext.style.cssText = `font-size:${value - 0.2}rem;`;
+});
+document.querySelector(".setting-4").addEventListener("input", (e) => {
+  const value = e.target.value;
+  arabic.forEach((a) => {
+    a.style.cssText = `color:${value};`;
+  });
+});
+document.querySelector(".setting-6").addEventListener("input", (e) => {
+  const value = e.target.value;
+  farsi.forEach((a) => {
+    a.style.cssText = `color:${value};`;
+  });
+  taftext.style.cssText = `color:${value};`;
+});
